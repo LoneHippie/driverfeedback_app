@@ -1,0 +1,23 @@
+@import "variables";
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+} 
+
+html { //starting mobile, going up
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+    background-color: $color-black;
+    color: $color-text;
+    font-size: $default-font-size;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 15rem;
+}

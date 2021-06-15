@@ -1,0 +1,21 @@
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+
+    border-bottom: 2px solid #FFFFFF;
+
+    &--text {
+        padding-top: 0.5rem;
+        letter-spacing: 0.35rem;
+    }
+
+    &--icon {
+        height: 4rem;
+    }
+}

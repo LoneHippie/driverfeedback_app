@@ -19,7 +19,7 @@ const App = () => {
             .then(res => res.json())
             .then(data => {
                 setDrivers(data.data.data);
-            })
+            });
     }, []);
 
     //state for search results to be passed to grid

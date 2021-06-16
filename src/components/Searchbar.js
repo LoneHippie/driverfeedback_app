@@ -35,7 +35,7 @@ const Searchbar = (props) => {
 
     //wrapper function to clear or autofill searchbar on form submit
     function handleMultipleSelect(e, results) {
-        if (search !== '' && search !== ' ') {
+        if (search !== '' && search !== ' ' && search !== '-') {
             getDrivers(e, results);
 
             //if only a single suggestion is present, autofill on search. Otherwise clear searchbar
@@ -57,7 +57,7 @@ const Searchbar = (props) => {
             return <></>
         } else {
             //conditional render for no found results
-            if (!filteredPlates.length) {
+            if (!filteredPlates?.length) {
                 return <div className="no-results" onClick={() => toggleCreateForm()}>
                     Can't find a license plate? Click here to add it to our list!
                 </div>

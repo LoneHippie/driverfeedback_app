@@ -6,7 +6,7 @@ import iconSearch from './../images/search-dark.svg';
 
 const Searchbar = (props) => {
 
-    const { drivers, getDrivers } = props;
+    const { drivers, getDrivers, toggleCreateForm } = props;
 
     const [ search, setSearch ] = useState('');
 
@@ -52,25 +52,27 @@ const Searchbar = (props) => {
     //generates searchbar results based on searchbar input value
     const searchResults = () => {
 
-        //conditional render of blank element for 0 results
-        if (
-            search.length === 0 || 
-            search === ' ' || 
-            search === '-' || 
-            filteredPlates?.length === 0
-        ) {
+        //conditional render of blank element for blank or invalid search
+        if (search.length === 0 || search === ' ' || search === '-') {
             return <></>
         } else {
-            return filteredPlates?.map((el, index) => 
-                <li 
-                    className="result--plate"
-                    style={{display: el.plateNumber === search ? 'none' : 'block'}}
-                    key={`plate-${index}`}
-                    onClick={(e) => handleSingleSelect(e, el)}
-                >
-                    {el.plateNumber}
-                </li>
-            )
+            //conditional render for no found results
+            if (!filteredPlates.length) {
+                return <div className="no-results" onClick={() => toggleCreateForm()}>
+                    Can't find a license plate? Click here to add it to our list!
+                </div>
+            } else {
+                return filteredPlates?.map((el, index) => 
+                    <li 
+                        className="result--plate"
+                        style={{display: el.plateNumber === search ? 'none' : 'block'}}
+                        key={`plate-${index}`}
+                        onClick={(e) => handleSingleSelect(e, el)}
+                    >
+                        {el.plateNumber}
+                    </li>
+                )
+            }
         }
     };
 
@@ -79,6 +81,7 @@ const Searchbar = (props) => {
             <form 
                 className="search"
                 id="driversearch"
+                autoComplete="off"
                 onSubmit={(e) => handleMultipleSelect(e, filteredPlates)}
             >
                 <div className="searchbar">

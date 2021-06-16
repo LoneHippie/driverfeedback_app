@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Header from './Header';
 import DriverGrid from './DriverGrid';
+import CreateForm from './CreateForm';
 
 import './../styles/base.scss';
 
@@ -34,6 +35,12 @@ const App = () => {
         }
     };
 
+    const [ createFormOpen, setCreateFormOpen ] = useState(false);
+
+    function toggleCreateForm() {
+        setCreateFormOpen(!createFormOpen);
+    };
+
     return (
         <>
             <Header />
@@ -43,11 +50,22 @@ const App = () => {
             <Searchbar 
                 drivers={drivers}
                 getDrivers={getDrivers}
+                toggleCreateForm={toggleCreateForm}
             />
 
             <DriverGrid 
                 driverResults={driverResults}
             />
+
+            {
+                createFormOpen ? (
+                    <CreateForm 
+                        toggleCreateForm={toggleCreateForm}
+                    />
+                ) : (
+                    <></>
+                )
+            }
         </>
     )
 };

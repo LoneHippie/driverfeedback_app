@@ -51,6 +51,15 @@
     z-index: -1;
 }
 
+.no-results {
+    text-align: center;
+    padding: 1rem;
+    font-size: 3rem;
+    color: rgba(#FFFFFF, 0.8);
+
+    cursor: pointer;
+}
+
 .result--plate {
     padding: 1rem;
     color: rgba(#FFFFFF, 0.8);

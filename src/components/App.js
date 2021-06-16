@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Header from './Header';
+import DriverGrid from './DriverGrid';
 
 import './../styles/base.scss';
 
@@ -8,9 +9,10 @@ import Searchbar from './Searchbar';
 
 const App = () => {
 
+    //state for all driver data
     const [ drivers, setDrivers ] = useState(undefined);
-    const [ plateList, setPlateList ] = useState(undefined);
 
+    //fetch all driver data and set to driver state
     useEffect(() => {
         fetch('https://driverfeedback.herokuapp.com/api/v1/drivers')
             .then(res => res.json())
@@ -19,27 +21,34 @@ const App = () => {
             })
     }, []);
 
-    useEffect(() => {
-        if (drivers !== undefined) {
-            let plateArr = [];
+    //state for search results to be passed to grid
+    const [ driverResults, setDriverResults ] = useState([]);
 
-            drivers.forEach(el => plateArr.push(el.plateNumber));
+    function getDrivers (e, results) {
+        e.preventDefault();
 
-            setPlateList(plateArr);
+        if (!results.length) { //if search result is a single element, return as in array format
+            setDriverResults([results]);
+        } else {
+            setDriverResults(results);
         }
-    }, [drivers]);
+    };
 
     return (
-        <div>
+        <>
             <Header />
 
             <h1 className="title">Driver Feedback</h1>
 
             <Searchbar 
                 drivers={drivers}
-                plateList={plateList}
+                getDrivers={getDrivers}
             />
-        </div>
+
+            <DriverGrid 
+                driverResults={driverResults}
+            />
+        </>
     )
 };
 

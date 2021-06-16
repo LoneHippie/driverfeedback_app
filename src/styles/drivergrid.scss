@@ -1,0 +1,39 @@
+@import "variables";
+
+.driver-grid {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 2rem;
+
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+
+.card-mini {
+    position: relative;
+    height: 10rem;
+    background: rgba(#FFFFFF, 0.05);
+
+    border: 2px solid rgba(#FFFFFF, 0.8);
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    &--plate {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2.5rem;
+        white-space: nowrap;
+    }
+
+    &--location {
+        width: 100%;
+        display: block;
+        text-align: center;
+        margin-top: 0.5rem;
+        color: rgba(#FFFFFF, 0.8);
+    }
+}

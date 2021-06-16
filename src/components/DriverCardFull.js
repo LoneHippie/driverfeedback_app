@@ -10,9 +10,16 @@ const DriverCardFull = (props) => {
         fetch(`https://driverfeedback.herokuapp.com/api/v1/drivers/${driver.id}/comments`)
             .then(res => res.json())
             .then(data => setDriverDetails(data.data.data));
-    }, []);
+    }, [driver]);
 
-    console.log(driverDetails);
+    const reformatedCommentDate = (el) => {
+        let commentDate = el.createdAt;
+
+        commentDate = commentDate.slice(0, -8);
+        commentDate = commentDate.replace('T', ' ');
+
+        return commentDate;
+    }
 
     const driverComments = () => {
         if (driverDetails === undefined || Array.isArray(driverDetails[0])) {
@@ -29,10 +36,14 @@ const DriverCardFull = (props) => {
                         {el.comment}
                     </div>
 
+                    <div className="comment--date">
+                        {reformatedCommentDate(el)}
+                    </div>
+
                 </div>
             )
         }
-    }
+    };
 
     return (
         <div className="card-full" id={`card-${driver.id}-full`} style={{display: 'none'}}>

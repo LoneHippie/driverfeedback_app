@@ -33,6 +33,13 @@ h1 {
     text-align: center;
     margin-top: 15rem;
     font-size: 7rem;
+    color: rgba($color-black, 0.9);
+
+    transition: all 200ms;
+
+    &.dark {
+        color: rgba($color-white, 0.9);
+    }
 
     @include respond(phone-1) {
         font-size: 5.5rem;

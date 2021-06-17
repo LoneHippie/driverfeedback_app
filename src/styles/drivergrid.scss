@@ -167,6 +167,14 @@
     }
 }
 
+.no-comment {
+    position: relative;
+    width: 100%;
+    color: rgba($color-white, 0.8);
+
+    font-size: 3rem;
+}
+
 .comment {
     position: relative;
     width: 100%;

@@ -76,7 +76,7 @@ const App = () => {
                 isDarkMode={isDarkMode}
             />
 
-            <h1 className="title">Driver Feedback</h1>
+            <h1 className={`title ${isDarkMode ? 'dark' : ''}`}>Driver Feedback</h1>
 
             <Searchbar 
                 drivers={drivers}

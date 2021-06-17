@@ -23,8 +23,8 @@ const DriverCardFull = (props) => {
     };
 
     const driverComments = () => {
-        if (driverDetails === undefined || Array.isArray(driverDetails[0])) {
-            return <span>There are no comments here yet</span>
+        if (driverDetails === undefined || Array.isArray(driverDetails[0]) || driverDetails?.length === 0) {
+            return <div className={`no-comment ${isDarkMode ? 'dark' : ''}`}>There are no comments here yet</div>
         } else {
             return driverDetails?.map((el, index) =>
                 <div className={`comment ${isDarkMode ? 'dark' : ''}`} key={`comment-${driver.id}-${index}`}>
@@ -74,6 +74,10 @@ const DriverCardFull = (props) => {
 
             <div className="card-full--comments">
                 {driverComments()}
+
+                <div className={`add-comment ${isDarkMode ? 'dark' : ''}`}>
+                    
+                </div>
             </div>
 
         </div>

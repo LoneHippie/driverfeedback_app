@@ -1,0 +1,12 @@
+//for adding smaller size, add as the first if
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone-3 {
+        @media (max-width: 28.125em) { @content }; //450px
+    }
+    @if $breakpoint == phone-2 {
+        @media (max-width: 34.375em) { @content }; //550px
+    }
+    @if $breakpoint == phone-1 {
+        @media (max-width: 46.875em) { @content }; //750px
+    }
+}

@@ -28,7 +28,7 @@ const ThemeToggle = (props) => {
         <div className="switch">
             <input type="checkbox" id="switch" onClick={(e) => toggleSwitch(e)}/>
             <label className={`switch-label ${isDarkMode ? 'dark': ''}`} htmlFor="switch">Login</label>
-            <span className="switch-title">{switchText ? 'Dark' : 'Light'}</span>
+            <span className={`switch-title ${isDarkMode ? 'dark' : ''}`}>{switchText ? 'Dark' : 'Light'}</span>
         </div>
     )
 };

@@ -1,9 +1,17 @@
 @import "variables";
+@import "mq";
 
 .search {
     width: 100%;
     margin: 0 auto;
     margin-top: 5rem;
+
+    @include respond(phone-2) {
+        margin-top: 3rem;
+    }
+    @include respond(phone-3) {
+        margin-top: 2rem;
+    }
 }
 
 .searchbar {
@@ -89,9 +97,14 @@
     text-align: center;
     padding: 1rem;
     font-size: 3rem;
-    color: rgba($color-white, 0.8);
+    color: rgba($color-black, 0.8);
 
     cursor: pointer;
+
+    &.dark {
+        color: rgba($color-white, 0.8);
+        background: transparent;
+    }
 }
 
 .result--plate {

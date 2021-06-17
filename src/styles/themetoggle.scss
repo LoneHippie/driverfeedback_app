@@ -1,4 +1,5 @@
 @import "variables";
+@import "mq";
 
 // .switch {
     
@@ -6,10 +7,21 @@
 
 .switch-title {
     font-size: 2.5rem;
-    margin-left: 4.5rem;
+    margin-left: 5.3rem;
     display: inline-block;
     padding-top: 3rem;
 	color: $color-white;
+
+	transition: all 200ms;
+
+	@include respond(phone-3) {
+		font-size: 2.15rem;
+		padding-top: 3.7rem;
+	}
+
+	&.dark {
+		margin-left: 2.5rem;
+	}
 }
 
 input[type=checkbox]{
@@ -23,6 +35,10 @@ input[type=checkbox]{
 	text-indent: -9999px;
 	width: 15rem;
 	height: 4rem;
+	@include respond(phone-3) {
+		width: 11.5rem;
+		height: 3.25rem;
+	}
 	background: rgba($color-white, 0.2);
 	display: block;
 	border-radius: 100px;
@@ -46,6 +62,11 @@ input[type=checkbox]{
 	background: #fff;
 	border-radius: 90px;
 	transition: 0.3s;
+
+	@include respond(phone-3) {
+		width: 2.35rem;
+		height: 2.35rem;
+	}
 }
 
 input:checked + .switch-label {

@@ -1,8 +1,15 @@
 @import "variables";
+@import "mq";
 
 .driver-grid {
     display: grid;
     grid-template-columns: repeat(4, auto);
+    @include respond(phone-1) {
+        grid-template-columns: repeat(3, auto);
+    }
+    @include respond(phone-3) {
+        grid-template-columns: repeat(2, auto);
+    }
     grid-gap: 2rem;
 
     width: 90%;
@@ -33,7 +40,15 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        letter-spacing: 0.16rem;
         font-size: 2.5rem;
+        @include respond(phone-2) {
+            letter-spacing: 0.075rem;
+            font-size: 2.25rem;
+        }
+        @include respond(phone-3) {
+            font-size: 2.5rem;
+        }
         white-space: nowrap;
     }
 
@@ -81,6 +96,10 @@
         border: 2px solid $color-white;
         color: $color-white;
 
+        @include respond(phone-2) {
+            width: 75%;
+        }
+
         &--country {
             display: block;
             width: 12rem;
@@ -121,7 +140,9 @@
 
         &--license {
             text-align: center;
+            font-family: $font-2;
             font-size: 6rem;
+            line-height: 7rem;
             letter-spacing: 0.4rem;
         }
     }
@@ -131,11 +152,13 @@
         flex-direction: column;
         justify-content: flex-start;
         width: 80%;
+        @include respond(phone-2) {
+            width: 85%;
+        }
+        height: 50%;
         margin: 0 auto;
         margin-top: 5rem;
         padding: 1.5rem;
-
-        height: 50%;
 
         border: 2px solid $color-white;
         border-radius: 8px;
@@ -172,10 +195,12 @@
     }
 
     &--text {
-        padding-top: 3.5rem;
+        padding-top: 3.65rem;
         padding-left: 1rem;
         padding-right: 4.5rem;
-        padding-bottom: 1rem;
+        padding-bottom: 1.3rem;
+        font-family: $font-1;
+        font-weight: 300;
         font-size: 3rem;
         text-transform: lowercase;
     }

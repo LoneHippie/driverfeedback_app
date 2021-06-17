@@ -59,7 +59,7 @@ const Searchbar = (props) => {
         } else {
             //conditional render for no found results
             if (!filteredPlates?.length) {
-                return <div className="no-results" onClick={() => toggleCreateForm()}>
+                return <div className={`no-results ${isDarkMode ? 'dark' : ''}`} onClick={() => toggleCreateForm()}>
                     Can't find a license plate? Click here to add it to our list!
                 </div>
             } else {
@@ -90,6 +90,7 @@ const Searchbar = (props) => {
                         className={`searchbar--field ${isDarkMode ? 'dark' : ''}`}
                         id="searchbar"
                         type="text"
+                        placeholder="License plate"
                         value={search}
                         onChange={(e) => handleChangeSearch(e)}
                     >

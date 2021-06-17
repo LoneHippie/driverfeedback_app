@@ -6,7 +6,7 @@ import './../styles/drivergrid.scss';
 
 const DriverGrid = (props) => {
 
-    const { driverResults } = props;
+    const { driverResults, isDarkMode } = props;
 
     const driverCardGenerator = () => {
         //checks if empty array is returned or not
@@ -17,6 +17,7 @@ const DriverGrid = (props) => {
                 <DriverCardMini key={`card-mini-${index}`}
                     driver={el}
                     index={index}
+                    isDarkMode={isDarkMode}
                 />
             )
         }

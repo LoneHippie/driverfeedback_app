@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 
 import './../styles/searchbar.scss';
 
-import iconSearch from './../images/search-dark.svg';
+import iconSearchDark from './../images/search-dark.svg';
+import iconSearchLight from './../images/search-light.svg';
 
 const Searchbar = (props) => {
 
-    const { drivers, getDrivers, toggleCreateForm } = props;
+    const { drivers, getDrivers, toggleCreateForm, isDarkMode } = props;
 
     const [ search, setSearch ] = useState('');
 
@@ -64,7 +65,7 @@ const Searchbar = (props) => {
             } else {
                 return filteredPlates?.map((el, index) => 
                     <li 
-                        className="result--plate"
+                        className={`result--plate ${isDarkMode ? 'dark' : ''}`}
                         style={{display: el.plateNumber === search ? 'none' : 'block'}}
                         key={`plate-${index}`}
                         onClick={(e) => handleSingleSelect(e, el)}
@@ -86,7 +87,7 @@ const Searchbar = (props) => {
             >
                 <div className="searchbar">
                     <input
-                        className="searchbar--field"
+                        className={`searchbar--field ${isDarkMode ? 'dark' : ''}`}
                         id="searchbar"
                         type="text"
                         value={search}
@@ -94,19 +95,19 @@ const Searchbar = (props) => {
                     >
                     </input>
                     <button 
-                        className="searchbar--button"
+                        className={`searchbar--button ${isDarkMode ? 'dark' : ''}`}
                         type="submit" 
                         form="driversearch"
                     >
                         <img 
                             className="searchbar--button-image"
-                            src={iconSearch} 
+                            src={iconSearchDark} 
                             alt="search license plates"
                         ></img>
                     </button>
                 </div>
 
-                <ul className="results">
+                <ul className={`results ${isDarkMode ? 'dark' : ''}`}>
                     {searchResults()}
                 </ul>
             </form>

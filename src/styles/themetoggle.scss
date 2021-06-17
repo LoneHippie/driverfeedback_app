@@ -1,0 +1,62 @@
+@import "variables";
+
+// .switch {
+    
+// }
+
+.switch-title {
+    font-size: 2.5rem;
+    margin-left: 4.5rem;
+    display: inline-block;
+    padding-top: 3rem;
+	color: $color-white;
+}
+
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.switch-label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 15rem;
+	height: 4rem;
+	background: rgba($color-white, 0.2);
+	display: block;
+	border-radius: 100px;
+	position: relative;
+    margin-bottom: -6.5rem;
+
+	transition: all 200ms;
+
+	&.dark {
+		background: rgba($color-black, 0.2);
+	}
+}
+
+.switch-label:after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 2.8rem;
+	height: 2.8rem;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+input:checked + .switch-label {
+	background: rgba($color-primary-light, 0.35);
+}
+
+input:checked + .switch-label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+.switch-label:active:after {
+	width: 8rem;
+}

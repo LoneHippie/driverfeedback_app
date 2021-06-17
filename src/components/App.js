@@ -41,9 +41,40 @@ const App = () => {
         setCreateFormOpen(!createFormOpen);
     };
 
+    const [ isDarkMode, setIsDarkMode ] = useState(false);
+
+    //default to light theme for initial visits
+    useEffect(() => {
+        if (localStorage.getItem('theme') === null) {
+            localStorage.setItem('theme', 'light');
+        };
+
+        if (localStorage.getItem('theme') === 'dark') {
+            setIsDarkMode(true);
+            document.body.classList.add('dark');
+        }
+    }, []);
+
+    //change isDarkMode state and update localstorage item
+    function toggleLightDark(e) {
+        setIsDarkMode(e.target.checked);
+
+        //update local storage and modify css class for body
+        if (localStorage.getItem('theme') === 'light') {
+            localStorage.setItem('theme', 'dark');
+            document.body.classList.add('dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+            document.body.classList.remove('dark');
+        }
+    };
+
     return (
         <>
-            <Header />
+            <Header
+                toggleLightDark={toggleLightDark}
+                isDarkMode={isDarkMode}
+            />
 
             <h1 className="title">Driver Feedback</h1>
 
@@ -51,10 +82,12 @@ const App = () => {
                 drivers={drivers}
                 getDrivers={getDrivers}
                 toggleCreateForm={toggleCreateForm}
+                isDarkMode={isDarkMode}
             />
 
             <DriverGrid 
                 driverResults={driverResults}
+                isDarkMode={isDarkMode}
             />
 
             {

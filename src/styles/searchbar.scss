@@ -19,18 +19,45 @@
         font-size: 3rem;
         padding: 1rem 1.5rem;
         border-radius: 10px 0px 0px 10px;
-        border: none;
+
+        border-left: 2px solid $color-primary-light;
+        border-top: 2px solid $color-primary-light;
+        border-bottom: 2px solid $color-primary-light;
+        border-right: none;
         outline: none;
+        background: rgba($color-black, 0.02);
+        color: $color-black;
+
+        z-index: 1000;
+
+        transition: all 200ms;
+
+        &.dark {
+            border: none;
+            outline: none;
+            background: $color-white;
+            color: $color-black;
+        }
     }
 
     &--button {
         padding-left: 1rem;
         padding-right: 1rem;
-        background: #FFFFFF;
         border-radius: 0px 10px 10px 0px;
-        border: none;
-
         cursor: pointer;
+
+        border-right: 2px solid $color-primary-light;
+        border-top: 2px solid $color-primary-light;
+        border-bottom: 2px solid $color-primary-light;
+        border-left: none;
+        background: rgba($color-black, 0.02);
+
+        transition: all 200ms;
+
+        &.dark {
+            border: none;
+            background: $color-white;
+        }
     }
 
     &--button-image {
@@ -45,31 +72,48 @@
     margin-top: -0.5rem;
     border-radius: 0px 0px 10px 10px;
     box-shadow: 0px 6px 11px 2px rgba($color-primary-light, 0.4);
-
     overflow: hidden;
 
+    background: $color-white;
+
+    transition: all 200ms;
+
     z-index: -1;
+
+    &.dark {
+        background: transparent;
+    }
 }
 
 .no-results {
     text-align: center;
     padding: 1rem;
     font-size: 3rem;
-    color: rgba(#FFFFFF, 0.8);
+    color: rgba($color-white, 0.8);
 
     cursor: pointer;
 }
 
 .result--plate {
     padding: 1rem;
-    color: rgba(#FFFFFF, 0.8);
     font-size: 3rem;
+    cursor: pointer;
+
+    color: rgba($color-black, 0.8);
 
     transition: all 200ms;
 
     &:hover {
-        cursor: pointer;
-        color: #FFFFFF;
-        background: rgba(#FFFFFF, 0.05);
+        color: $color-black;
+        background: rgba($color-white, 0.05);
+    }
+
+    &.dark {
+        color: rgba($color-white, 0.8);
+
+        &:hover {
+            color: $color-white;
+            background: rgba($color-black, 0.05);
+        }
     }
 }

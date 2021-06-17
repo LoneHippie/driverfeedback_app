@@ -12,9 +12,16 @@ html { //starting mobile, going up
 
 body {
     box-sizing: border-box;
-    background-color: $color-black;
-    color: $color-text;
+    background-color: $color-white;
+    color: $color-black;
     font-size: $default-font-size;
+
+    transition: all 200ms;
+
+    &.dark {
+        background-color: $color-black;
+        color: $color-white;
+    }
 }
 
 h1 {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const DriverCardFull = (props) => {
 
-    const { driver, toggleCard } = props;
+    const { driver, toggleCard, isDarkMode } = props;
 
     const [ driverDetails, setDriverDetails ] = useState(undefined);
 
@@ -12,41 +12,38 @@ const DriverCardFull = (props) => {
             .then(data => setDriverDetails(data.data.data));
     }, [driver]);
 
-    const reformatedCommentDate = (el) => {
-        let commentDate = el.createdAt;
+    //converts comment timestamp into a more readable string
+    const reformatedCommentDate = (originalDate) => {
+        let commentDate = originalDate.createdAt;
 
         commentDate = commentDate.slice(0, -8);
         commentDate = commentDate.replace('T', ' ');
 
         return commentDate;
-    }
+    };
 
     const driverComments = () => {
         if (driverDetails === undefined || Array.isArray(driverDetails[0])) {
             return <span>There are no comments here yet</span>
         } else {
             return driverDetails?.map((el, index) =>
-                <div className="comment" key={`comment-${driver.id}-${index}`}>
-                    
+                <div className={`comment ${isDarkMode ? 'dark' : ''}`} key={`comment-${driver.id}-${index}`}>
                     <div className="comment--type">
                         {el.commentType}
                     </div>
-
                     <div className="comment--text">
                         {el.comment}
                     </div>
-
                     <div className="comment--date">
                         {reformatedCommentDate(el)}
                     </div>
-
                 </div>
             )
         }
     };
 
     return (
-        <div className="card-full" id={`card-${driver.id}-full`} style={{display: 'none'}}>
+        <div className={`card-full ${isDarkMode ? 'dark' : ''}`} id={`card-${driver.id}-full`} style={{display: 'none'}}>
 
             <button 
                 className="close-card"
@@ -55,7 +52,7 @@ const DriverCardFull = (props) => {
 
             <div className="card-full__plate">
 
-                <span className="card-full__plate--country">
+                <span className={`card-full__plate--country ${isDarkMode ? 'dark' : ''}`}>
                     {driver.country}
                 </span>
                 
@@ -65,7 +62,7 @@ const DriverCardFull = (props) => {
 
                 {
                     driver.state ? (
-                        <span className="card-full__plate--state">
+                        <span className={`card-full__plate--state ${isDarkMode ? 'dark' : ''}`}>
                             {driver.state}
                         </span>
                     )  : (

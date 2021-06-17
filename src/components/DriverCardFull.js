@@ -28,13 +28,13 @@ const DriverCardFull = (props) => {
         } else {
             return driverDetails?.map((el, index) =>
                 <div className={`comment ${isDarkMode ? 'dark' : ''}`} key={`comment-${driver.id}-${index}`}>
-                    <div className="comment--type">
+                    <div className={`comment--type ${isDarkMode ? 'dark' : ''}`}>
                         {el.commentType}
                     </div>
                     <div className="comment--text">
                         {el.comment}
                     </div>
-                    <div className="comment--date">
+                    <div className={`comment--date ${isDarkMode ? 'dark' : ''}`}>
                         {reformatedCommentDate(el)}
                     </div>
                 </div>

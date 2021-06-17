@@ -179,7 +179,7 @@
     position: relative;
     width: 100%;
     border-radius: 4px;
-    background: rgba($color-black, 0.05);
+    background: rgba($color-black, 0.15);
     color: $color-white;
 
     transition: all 200ms;
@@ -197,13 +197,18 @@
         top: 0;
         right: 0;
         padding: 0.75rem;
-        font-size: 2.2rem;
         color: rgba($color-white, 0.8);
         text-transform: capitalize;
+        border-radius: 0px 0px 0px 8px;
+        box-shadow: -1.75px 1.75px 12px $color-primary-light;
+
+        &.dark {
+            box-shadow: -1.5px 1.5px 12px $color-black;
+        }
     }
 
     &--text {
-        padding-top: 3.65rem;
+        padding-top: 3.85rem;
         padding-left: 1rem;
         padding-right: 4.5rem;
         padding-bottom: 1.3rem;
@@ -215,8 +220,14 @@
 
     &--date {
         padding-left: 1rem;
+        padding-top: 0.75rem;
         padding-bottom: 0.75rem;
         color: rgba($color-white, 0.8);
+        box-shadow: 0px -2px 12px $color-primary-light;
+
+        &.dark {
+            box-shadow: 0px -1.5px 12px $color-black;
+        }
     }
 }
 

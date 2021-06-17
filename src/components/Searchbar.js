@@ -102,7 +102,7 @@ const Searchbar = (props) => {
                     >
                         <img 
                             className="searchbar--button-image"
-                            src={iconSearchDark} 
+                            src={isDarkMode ? iconSearchDark : iconSearchLight} 
                             alt="search license plates"
                         ></img>
                     </button>

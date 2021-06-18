@@ -1,20 +1,28 @@
 @import "variables";
+@import "mixins";
+@import "mq";
 
-.create-form {
+.newdriver-page {
     position: fixed;
     top: 0;
     left: 0;
     margin-top: 7.5rem;
     width: 100%;
     height: 100%;
-    background: magenta;
+    background: $color-primary-light;
 
     z-index: 1000;
 
+    transition: all 200ms;
+
     animation: pullUp 400ms ease-out;
+
+    &.dark {
+        background: $color-black;
+    }
 }
 
-.close-form {
+.close-newdriver-page {
     position: absolute;
     top: 0;
     right: 0;
@@ -25,6 +33,96 @@
     font-size: 3.5rem;
 
     cursor: pointer;
+}
+
+.example-plate {
+    @include fullPlateDisplay;
+    margin-bottom: 3rem;
+}
+
+.driver-form {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid $color-white;
+
+    &__input {
+        width: 100%;
+        font-size: 3rem;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+
+        border: 2px solid $color-primary-light;
+        outline: none;
+        background: $color-white;
+        color: $color-black;
+
+        z-index: 1000;
+
+        transition: all 200ms;
+
+        &.dark {
+            border: none;
+            outline: none;
+            background: $color-white;
+            color: $color-black;
+        }
+    }
+
+    &__search {
+        margin-bottom: 1.5rem;
+    }
+
+    &__results {
+        margin: 0 auto;
+        width: 98.5%;
+        list-style: none;
+        margin-top: -1.825rem;
+        border-radius: 0px 0px 10px 10px;
+        box-shadow: 0px 6px 11px 2px rgba($color-primary-light, 0.4);
+        overflow-y: scroll;
+
+        max-height: 15rem;
+
+        background: $color-white;
+
+        transition: all 200ms;
+
+        z-index: -1;
+
+        &.dark {
+            background: transparent;
+        }
+
+        &--item {
+            padding: 0.5rem 1rem;
+            font-size: 2.5rem;
+            cursor: pointer;
+
+            color: rgba($color-black, 0.8);
+
+            transition: all 200ms;
+
+            &:hover {
+                color: $color-black;
+                background: rgba($color-white, 0.05);
+            }
+
+            &.dark {
+                color: rgba($color-white, 0.8);
+
+                &:hover {
+                    color: $color-white;
+                    background: rgba($color-black, 0.05);
+                }
+            }
+        }
+    }
 }
 
 @keyframes pullUp {

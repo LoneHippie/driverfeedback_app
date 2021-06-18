@@ -94,6 +94,7 @@ const App = () => {
                 createFormOpen ? (
                     <CreateForm 
                         toggleCreateForm={toggleCreateForm}
+                        isDarkMode={isDarkMode}
                     />
                 ) : (
                     <></>

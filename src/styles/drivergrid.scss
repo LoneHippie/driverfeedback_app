@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 @import "mq";
 
 .driver-grid {
@@ -88,71 +89,7 @@
     }
 
     &__plate {
-        width: 60%;
-        height: 17rem;
-        margin: 0 auto;
-        margin-top: 5rem;
-        border-radius: 10px;
-        border: 2px solid $color-white;
-        color: $color-white;
-
-        @include respond(phone-2) {
-            width: 75%;
-        }
-        @include respond(phone-3) {
-            width: 80%;
-        }
-
-        &--country {
-            display: block;
-            width: 12rem;
-            text-align: center;
-            margin: 0 auto;
-            font-size: 4rem;
-            background: $color-primary-light;
-
-            transform: translateY(-2rem);
-
-            transition: all 200ms;
-
-            z-index: 500;
-
-            &.dark {
-                background: $color-black;
-            }
-        }
-
-        &--state {
-            display: block;
-            width: 8rem;
-            text-align: center;
-            margin: 0 auto;
-            font-size: 4rem;
-            background: $color-primary-light;
-
-            transform: translateY(2.75rem);
-
-            transition: all 200ms;
-
-            z-index: 500;
-
-            &.dark {
-                background: $color-black;
-            }
-        }
-
-        &--license {
-            text-align: center;
-            font-family: $font-2;
-            font-size: 6rem;
-            line-height: 7rem;
-            letter-spacing: 0.4rem;
-
-            @include respond(phone-3) {
-                font-size: 5.2rem;
-                letter-spacing: 0.22rem;
-            }
-        }
+        @include fullPlateDisplay;
     }
 
     &--comments {

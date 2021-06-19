@@ -19,7 +19,7 @@ const CreateForm = (props) => {
     const [ formComment, setFormComment ] = useState('');
     const [ formCommentType, setFormCommentType ] = useState('');
 
-    const [ authMessage, setAuthMessage ] = useState('');
+    const [ authMessage, setAuthMessage ] = useState(undefined);
 
     //on first load during session, fetch list of countries and codes from local json file
     useEffect(() => {
@@ -83,11 +83,28 @@ const CreateForm = (props) => {
         changeState: (state) => {
             setPlateState(state.code);
             setStateSearch(state.name);
+        },
+        changeCommentType: (tag) => { //refactor this later
+            setFormCommentType(tag);
+
+            //remove active class from all commentType tags
+            let typeTags = document.getElementsByClassName('driver-form__types--tag');
+            for (let i = 0; i < typeTags.length; i++) {
+                typeTags[i].classList.remove('active');
+                typeTags[i].classList.add('deactivated');
+            };
+            //add active class to match current commentType state
+            document.getElementById(`type-${tag}`).classList.remove('deactivated')
+            document.getElementById(`type-${tag}`).classList.add('active');
+        },
+        changeComment: (e) => {
+            setFormComment(e.target.value);
         }
     };
 
     const filteredCountries = countriesList?.filter(el => {
-        if (el.name.includes(countrySearch)) {
+        //check list of valid country names against search term (end spaces removed and cap/low agnostic)
+        if (el.name.toLowerCase().includes(countrySearch.toLowerCase().trimEnd())) {
             return el;
         }
     });
@@ -117,7 +134,8 @@ const CreateForm = (props) => {
     };
 
     const filteredStates = stateList?.filter(el => {
-        if (el.name.includes(stateSearch)) {
+        //check list of valid country names against search term (end spaces removed and cap/low agnostic)
+        if (el.name.toLowerCase().includes(stateSearch.toLowerCase().trimEnd())) {
             return el;
         }
     });
@@ -146,12 +164,51 @@ const CreateForm = (props) => {
         }
     };
 
+    const commentEnums = [
+        'Driver Issue', 'Car Issue', 'Parking', 'Accident'
+    ];
+
+    const commentTypeGrid = () => {
+
+        return commentEnums.map((el, index) =>
+            <button
+                className="driver-form__types--tag"
+                id={`type-${el}`}
+                key={`comment-type-${index}`}
+                type="button"
+                onClick={() => formHandlers.changeCommentType(el)}
+            >
+                {el}
+            </button>
+        )
+    };
+
     async function submitDriver(e) {
         e.preventDefault();
 
         try {
+            if (formPlate.length < 3) {
+                throw new Error('Plate number too short');
+            };
+
+            if (plateCountry === undefined) {
+                throw new Error('Please select a country');
+            };
+
+            if (plateCountry === 'US' && plateState === undefined) {
+                throw new Error('Please select a state');
+            };
+
+            if (formComment !== '' && formCommentType === '') {
+                throw new Error('Please select a tag for your comment');
+            };
+
+            if (formCommentType !== '' && formComment === '') {
+                throw new Error('Please write a comment for your tag');
+            };
+
             const driverBody = () => {
-                if (plateCountry === 'USA') {
+                if (plateCountry === 'US') {
                     return {
                         'plateNumber': formPlate.trim(),
                         'country': plateCountry,
@@ -191,17 +248,13 @@ const CreateForm = (props) => {
                 throw new Error('License plate upload failed');
             };
 
-            console.log('success!');
-
             setAuthMessage('Driver info added');
 
             if (commentBody() !== false) {
 
-                setTimeout(() => {
-                    setAuthMessage('Uploading comment...');
-                }, 2000);
+                setAuthMessage('Uploading comment...');
 
-                const newComment = await fetch(`https://driverfeedback.herokuapp.com/api/v1/drivers/${driverResponse.id}/comments`, {
+                const newComment = await fetch(`https://driverfeedback.herokuapp.com/api/v1/drivers/${driverResponse.data.data.id}/comments`, {
                     method: 'post',
                     headers: {
                         'Accept': 'application/json',
@@ -213,7 +266,7 @@ const CreateForm = (props) => {
                 const commentResponse = await newComment.json();
 
                 if (commentResponse.status === 'fail' || commentResponse.status === 'error') {
-                    throw new Error('Comment upload failed');
+                    throw new Error('Feedback upload failed');
                     //add ui feedback later in catch block
                 };
 
@@ -223,7 +276,7 @@ const CreateForm = (props) => {
             window.location.reload();
 
         } catch(err) {
-            console.log('uncaught error occured:');
+            console.log('post error occured:');
             console.log(err);
 
             setAuthMessage(err.message);
@@ -248,7 +301,7 @@ const CreateForm = (props) => {
                 </span>
 
                 <div className="example-plate--license">
-                    {formPlate !== '' && formPlate !== ' ' ? formPlate : '??? ?? ??'}
+                    {formPlate !== '' && formPlate !== ' ' ? formPlate : 'XX-XXXX'}
                 </div>
 
                 {
@@ -266,8 +319,9 @@ const CreateForm = (props) => {
             <form
                 className="driver-form"
                 id="driver-form"
-                onSubmit={(e) => submitDriver(e)}
             >
+
+                <h2 className="driver-form__title">License Plate Info</h2>
 
                 <input
                     required={true}
@@ -276,8 +330,8 @@ const CreateForm = (props) => {
                     autoComplete="off"
                     id="driver-form-plate"
                     value={formPlate}
-                    pattern="([A-z0-9À-ž\s]){2,10}"
-                    maxLength="11"
+                    pattern="([A-z0-9À-ž\s]){4,10}"
+                    maxLength="9"
                     onChange={(e) => formHandlers.changePlate(e)}
                     placeholder="License Plate"
                 >
@@ -292,7 +346,7 @@ const CreateForm = (props) => {
                         autoComplete="off"
                         id="driver-form-country"
                         value={countrySearch}
-                        pattern="([A-zÀ-ž\s])"
+                        pattern="([A-zÀ-ž\s]+)"
                         onChange={(e) => formHandlers.changeCountrySearch(e)}
                         placeholder="Country"
                     >
@@ -315,7 +369,7 @@ const CreateForm = (props) => {
                                 autoComplete="off"
                                 id="driver-form-state"
                                 value={stateSearch}
-                                pattern="([A-zÀ-ž\s])"
+                                pattern="([A-zÀ-ž\s]+)"
                                 onChange={(e) => formHandlers.changeStateSearch(e)}
                                 placeholder="State"
                             >
@@ -332,6 +386,49 @@ const CreateForm = (props) => {
                 }
 
             </form>
+
+            <form
+                className="driver-form"
+                id="comment-form"
+            >
+
+                <h2 className="driver-form__title">Feedback (optional)</h2>
+
+                <textarea
+                    required={true}
+                    className="driver-form__textarea"
+                    rows="3"
+                    minLength="4"
+                    maxLength="200"
+                    id="driver-form-comment"
+                    value={formComment}
+                    onChange={(e) => formHandlers.changeComment(e)}
+                    placeholder="Your comment"
+                >
+                </textarea>
+
+                <div className="driver-form__types">
+                    {commentTypeGrid()}
+                </div>
+
+            </form>
+
+            {
+                authMessage ? (
+                    <div className={`auth-message ${isDarkMode ? 'dark' : ''}`}>
+                        {authMessage}
+                    </div>
+                ) : (
+                    <></>
+                )
+            }
+
+            <button
+                className="driver-form__btn"
+                onClick={(e) => submitDriver(e)}
+            >
+                Upload
+            </button>
 
         </div>
     )

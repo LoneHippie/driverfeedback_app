@@ -20,7 +20,7 @@ const DriverCardMini = (props) => {
                 <span className="card-mini--plate">{driver.plateNumber}</span>
 
                 <span className={`card-mini--location ${isDarkMode ? 'dark' : ''}`}>
-                    {driver.country === 'USA' ? driver.state : driver.country}
+                    {driver.country === 'US' ? driver.state : driver.country}
                 </span>
             </div>
 

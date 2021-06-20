@@ -43,7 +43,7 @@
     &__links {
         position: fixed;
         bottom: 0;
-        margin-bottom: 3rem;
+        margin-bottom: 2.25rem;
         display: flex;
         flex-direction: row;
         align-content: flex-start;
@@ -65,13 +65,36 @@
 
     & > p {
         color: $color-white;
-        font-size: 2.5rem;
+        font-size: 2.7rem;
         line-height: 3.6rem;
         margin-bottom: 2rem;
+
+        @include respond(phone-2) {
+            font-size: 2.35rem;
+            line-height: 3.4rem;
+        }
+        @include respond(phone-3) {
+            line-height: 3rem;
+        }
+    }
+
+    & > span {
+        color: rgba($color-white, 0.8);
+        font-size: 2.5rem;
+
+        @include respond(phone-2) {
+            font-size: 2.3rem;
+            line-height: 3.4rem;
+        }
     }
 
     & > h2 {
         color: rgba($color-white, 0.8);
         font-size: 2.5rem;
+
+        @include respond(phone-2) {
+            font-size: 2.3rem;
+            line-height: 3.4rem;
+        }
     }
 }

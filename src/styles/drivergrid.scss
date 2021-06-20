@@ -16,6 +16,7 @@
     width: 90%;
     margin: 0 auto;
     margin-top: 5rem;
+    padding-bottom: 4rem;
 }
 
 .card-mini {
@@ -76,7 +77,10 @@
     margin-top: 7.5rem;
     width: 100%;
     height: 100%;
-    background: $color-primary-light;
+    background: linear-gradient(
+        $color-primary-light 50%,
+        $color-primary-dark-1
+    );
 
     z-index: 1000;
 
@@ -85,7 +89,11 @@
     animation: pullUp 400ms ease-out;
 
     &.dark {
-        background: $color-black;
+        background: linear-gradient(
+            $color-black 60%,
+            $color-primary-dark-2,
+            $color-primary
+        );
     }
 
     &__plate {
@@ -147,6 +155,8 @@
         border-radius: 0px 0px 0px 8px;
         box-shadow: -1.75px 1.75px 12px $color-primary-light;
 
+        transition: all 200ms;
+
         &.dark {
             box-shadow: -1.5px 1.5px 12px $color-black;
         }
@@ -169,6 +179,8 @@
         padding-bottom: 0.75rem;
         color: rgba($color-white, 0.8);
         box-shadow: 0px -2px 12px $color-primary-light;
+
+        transition: all 200ms;
 
         &.dark {
             box-shadow: 0px -1.5px 12px $color-black;

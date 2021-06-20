@@ -70,7 +70,7 @@ const App = () => {
     };
 
     return (
-        <>
+        <main>
             <Header
                 toggleLightDark={toggleLightDark}
                 isDarkMode={isDarkMode}
@@ -100,7 +100,7 @@ const App = () => {
                     <></>
                 )
             }
-        </>
+        </main>
     )
 };
 

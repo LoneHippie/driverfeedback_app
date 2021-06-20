@@ -1,0 +1,77 @@
+@import "variables";
+@import "mq";
+
+.info-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 7.5rem;
+    padding: 2rem;
+    width: 100%;
+    height: calc(100% - 7.5rem);
+    background: linear-gradient(
+        $color-primary-light 50%,
+        $color-primary-dark-1
+    );
+
+    overflow: hidden;
+    overflow-y: scroll;
+
+    z-index: 1000;
+
+    transition: all 200ms;
+
+    animation: pullUp 150ms ease-out;
+
+    &.dark {
+        background: linear-gradient(
+            $color-black 60%,
+            $color-primary-dark-2,
+            $color-primary
+        );
+    }
+
+    &__background {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+
+        z-index: -1;
+    }
+
+    &__links {
+        position: fixed;
+        bottom: 0;
+        margin-bottom: 3rem;
+        display: flex;
+        flex-direction: row;
+        align-content: flex-start;
+
+        & > a {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 2px solid $color-white;
+            background: rgba($color-black, 0.6);
+            text-decoration: none;
+            font-size: 2.5rem;
+            color: $color-white;
+
+            &:first-child {
+                margin-right: 2.5rem;
+            }
+        }
+    }
+
+    & > p {
+        color: $color-white;
+        font-size: 2.5rem;
+        line-height: 3.6rem;
+        margin-bottom: 2rem;
+    }
+
+    & > h2 {
+        color: rgba($color-white, 0.8);
+        font-size: 2.5rem;
+    }
+}

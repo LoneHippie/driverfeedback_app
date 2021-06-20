@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import DriverGrid from './DriverGrid';
 import CreateForm from './CreateForm';
+import InfoPage from './InfoPage';
 
 import './../styles/base.scss';
 
@@ -36,10 +37,15 @@ const App = () => {
     };
 
     const [ createFormOpen, setCreateFormOpen ] = useState(false);
+    const [ infoPageOpen, setInfoPageOpen ] = useState(false);
 
     function toggleCreateForm() {
         setCreateFormOpen(!createFormOpen);
     };
+
+    function toggleInfoPage() {
+        setInfoPageOpen(!infoPageOpen);
+    }
 
     const [ isDarkMode, setIsDarkMode ] = useState(false);
 
@@ -73,6 +79,7 @@ const App = () => {
         <main>
             <Header
                 toggleLightDark={toggleLightDark}
+                toggleInfoPage={toggleInfoPage}
                 isDarkMode={isDarkMode}
             />
 
@@ -94,6 +101,16 @@ const App = () => {
                 createFormOpen ? (
                     <CreateForm 
                         toggleCreateForm={toggleCreateForm}
+                        isDarkMode={isDarkMode}
+                    />
+                ) : (
+                    <></>
+                )
+            }
+
+            {
+                infoPageOpen ? (
+                    <InfoPage 
                         isDarkMode={isDarkMode}
                     />
                 ) : (

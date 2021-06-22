@@ -27,6 +27,7 @@ const CommentForm = (props) => {
                 id={`type-${el}`}
                 key={`comment-type-${index}`}
                 type="button"
+                aria-label={`${el}`}
                 onClick={() => formHandlers.changeCommentType(el)}
             >
                 {el}
@@ -52,6 +53,7 @@ const CommentForm = (props) => {
                 value={formComment ?? ''}
                 onChange={(e) => formHandlers.changeComment(e)}
                 placeholder="Your comment"
+                aria-label="Comment or feedback"
             >
             </textarea>
 
@@ -73,8 +75,21 @@ const CommentForm = (props) => {
                         }
 
                         <div className="comment-options">
-                            <button className={`${isDarkMode ? 'dark' : ''}`} type="button" onClick={(e) => submitComment(e)}>Upload</button>
-                            <button className={`${isDarkMode ? 'dark' : ''}`} type="button" onClick={() => toggleCommentOpen()}>Cancel</button>
+
+                            <button 
+                                className={`${isDarkMode ? 'dark' : ''}`} 
+                                type="button" 
+                                aria-label="Submit comment"
+                                onClick={(e) => submitComment(e)}
+                            >Upload</button>
+
+                            <button 
+                                className={`${isDarkMode ? 'dark' : ''}`} 
+                                type="button" 
+                                aria-label="Cancel"
+                                onClick={() => toggleCommentOpen()}
+                            >Cancel</button>
+
                         </div>
                     </>
                 ) : (

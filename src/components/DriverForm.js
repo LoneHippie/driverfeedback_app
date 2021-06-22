@@ -98,6 +98,7 @@ const DriverForm = (props) => {
                 maxLength="9"
                 onChange={(e) => formHandlers.changePlate(e)}
                 placeholder="License Plate"
+                aria-label="License plate"
             >
             </input>
 
@@ -113,6 +114,7 @@ const DriverForm = (props) => {
                     pattern="([A-zÀ-ž\s]+)"
                     onChange={(e) => formHandlers.changeCountrySearch(e)}
                     placeholder="Country"
+                    aria-label="License plate country"
                 >
                 </input>
 
@@ -136,6 +138,7 @@ const DriverForm = (props) => {
                             pattern="([A-zÀ-ž\s]+)"
                             onChange={(e) => formHandlers.changeStateSearch(e)}
                             placeholder="State"
+                            aria-label="License plate state"
                         >
                         </input>
 

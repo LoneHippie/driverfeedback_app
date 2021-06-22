@@ -208,7 +208,8 @@ const CreateForm = (props) => {
         <div className={`newdriver-page ${isDarkMode ? 'dark' : ''}`}>
 
             <button 
-                className="close-newdriver-page"
+                aria-label="Close"
+                className={`close-newdriver-page ${isDarkMode ? 'dark' : ''}`}
                 onClick={() => toggleCreateForm()}
             >X</button>
 
@@ -264,6 +265,7 @@ const CreateForm = (props) => {
             }
 
             <button
+                aria-label="Submit"
                 className="newdriver__btn"
                 onClick={(e) => submitDriver(e)}
             >

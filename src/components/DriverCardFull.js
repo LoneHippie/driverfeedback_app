@@ -141,7 +141,8 @@ const DriverCardFull = (props) => {
         <div className={`card-full ${isDarkMode ? 'dark' : ''}`} id={`card-${driver.id}-full`} style={{display: 'none'}}>
 
             <button 
-                className="close-card"
+                aria-label="Close"
+                className={`close-card ${isDarkMode ? 'dark' : ''}`}
                 onClick={() => toggleCardAndComment()}
             >X</button>
 
@@ -186,6 +187,7 @@ const DriverCardFull = (props) => {
                         <button 
                             className={`add-comment ${isDarkMode ? 'dark' : ''}`}
                             onClick={() => toggleCommentOpen()}
+                            aria-label="Leave Feedback"
                         >
                             Leave Feedback 
                         </button>

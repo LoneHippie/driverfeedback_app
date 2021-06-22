@@ -18,12 +18,13 @@ const Header = (props) => {
                     isDarkMode={isDarkMode}
                 />
             </div>
-            <img 
-                src={iconInfo}
-                className="header--icon"
-                alt="more info"
-                onClick={() => toggleInfoPage()}
-            ></img>
+            <button className="header--icon" aria-label="Info">
+                <img 
+                    src={iconInfo}
+                    alt="more info"
+                    onClick={() => toggleInfoPage()}
+                ></img>
+            </button>
         </header>
     )
 };

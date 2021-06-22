@@ -55,9 +55,13 @@ const Searchbar = (props) => {
         } else {
             //conditional render for no found results
             if (!filteredPlates?.length) {
-                return <div className={`no-results ${isDarkMode ? 'dark' : ''}`} onClick={() => toggleCreateForm()}>
-                    Can't find a license plate? Click here to add it to our list!
-                </div>
+                return <button 
+                        className={`no-results ${isDarkMode ? 'dark' : ''}`} 
+                        onClick={() => toggleCreateForm()}
+                        aria-label="Add a license plate and comment"
+                        >
+                        Can't find a license plate? Click here to add it to our list!
+                    </button>
             } else {
                 return filteredPlates?.map((el, index) => 
                     <li 
@@ -79,6 +83,7 @@ const Searchbar = (props) => {
                 className="search"
                 id="driversearch"
                 autoComplete="off"
+                aria-label="Search for license plates"
                 onSubmit={(e) => handleMultipleSelect(e, filteredPlates)}
             >
                 <div className="searchbar">
@@ -89,11 +94,13 @@ const Searchbar = (props) => {
                         placeholder="License plate"
                         value={search}
                         onChange={(e) => handleChangeSearch(e)}
+                        aria-label="Search for license plates"
                     >
                     </input>
                     <button 
                         className={`searchbar--button ${isDarkMode ? 'dark' : ''}`}
                         type="submit" 
+                        aria-label="Search"
                         form="driversearch"
                     >
                         <img 

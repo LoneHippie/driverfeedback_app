@@ -106,8 +106,13 @@ const DriverCardFull = (props) => {
     const reformatedCommentDate = (originalDate) => {
         let commentDate = originalDate.createdAt;
 
-        commentDate = commentDate.slice(0, -8);
-        commentDate = commentDate.replace('T', ' ');
+        commentDate = new Date(commentDate);
+        commentDate = commentDate + '';
+        commentDate = commentDate.slice(0, 21);
+
+        //for more technical timestamp
+        // commentDate = commentDate.slice(0, -8);
+        // commentDate = commentDate.replace('T', ' ');
 
         return commentDate;
     };

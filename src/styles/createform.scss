@@ -3,33 +3,7 @@
 @import "mq";
 
 .newdriver-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin-top: 7.5rem;
-    width: 100%;
-    height: calc(100% - 7.5rem);
-    background: linear-gradient(
-        $color-primary-light 50%,
-        $color-primary-dark-1
-    );
-
-    overflow: hidden;
-    overflow-y: scroll;
-
-    z-index: 1000;
-
-    transition: all 200ms;
-
-    animation: pullUp 400ms ease-out;
-
-    &.dark {
-        background: linear-gradient(
-            $color-black 60%,
-            $color-primary-dark-2,
-            $color-primary
-        );
-    }
+    @include fullPage;
 }
 
 .close-newdriver-page {
@@ -50,7 +24,7 @@
     margin-bottom: 3rem;
 }
 
-.auth-message {
+.auth-message--newdriver {
     margin-left: 7.75%;
     font-size: 2.2rem;
     margin-top: -0.75rem;
@@ -58,180 +32,38 @@
     color: rgba($color-white, 0.8);
 }
 
-.driver-form {
-    display: flex;
-    flex-direction: column;
-    width: 85%;
+.newdriver__btn {
+    display: block;
     margin: 0 auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    padding: 2rem;
+    width: 35%;
+    margin-left: 7.5%;
+    padding: 0.75rem 0rem;
+    font-family: $font-1;
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    border: none;
     border-radius: 8px;
-    border: 2px solid $color-white;
 
-    &__title {
-        color: $color-white;
-        margin-bottom: 1.5rem;
-        padding-left: 0.5rem;
+    cursor: pointer;
+
+    margin-bottom: 2rem;
+
+    background: linear-gradient(to bottom right,
+        $color-primary,
+        $color-primary-light
+    );
+    color: $color-white;
+
+    @include respond(phone-2) {
+        width: 60%;
     }
 
-    &__input {
-        width: 100%;
-        font-size: 3rem;
-        font-family: inherit;
-        padding: 1rem 1.5rem;
-        border-radius: 10px;
-        margin-bottom: 1.5rem;
-
-        border: 2px solid $color-primary-light;
+    &:focus,
+    &:hover {
         outline: none;
-        background: $color-white;
-        color: rgba($color-black, 0.8);
-
-        z-index: 1000;
-
-        transition: all 200ms;
-
-        &.dark {
-            border: none;
-            outline: none;
-            background: $color-white;
-            color: $color-black;
-        }
-    }
-
-    &__btn {
-        display: block;
-        margin: 0 auto;
-        width: 35%;
-        margin-left: 7.5%;
-        padding: 0.75rem 0rem;
-        font-family: $font-1;
-        font-size: 3rem;
-        font-weight: 600;
-        text-align: center;
-        border: none;
-        border-radius: 8px;
-
-        cursor: pointer;
-
-        margin-bottom: 2rem;
-
-        background: linear-gradient(to bottom right,
-            $color-primary,
-            $color-primary-light
-        );
-        color: $color-white;
-
-        @include respond(phone-2) {
-            width: 60%;
-        }
-    }
-
-    &__search {
-        margin-bottom: 1.5rem;
-    }
-
-    &__results {
-        margin: 0 auto;
-        width: 98.5%;
-        list-style: none;
-        margin-top: -1.825rem;
-        border-radius: 0px 0px 10px 10px;
-        box-shadow: 0px 6px 13px 0.1px rgba($color-black, 0.4);
-        overflow-y: scroll;
-
-        max-height: 15rem;
-
-        background: $color-white;
-
-        transition: all 200ms;
-
-        z-index: -1;
-
-        &.dark {
-            background: transparent;
-            box-shadow: 0px 6px 13px 0.1px rgba($color-primary-light, 0.4);
-        }
-
-        &--item {
-            padding: 0.75rem 1rem;
-            font-size: 2.5rem;
-            @include respond(phone-2) {
-                font-size: 2.75rem;
-            }
-            cursor: pointer;
-
-            color: rgba($color-black, 0.8);
-
-            transition: all 200ms;
-
-            &:hover {
-                color: $color-primary-light;
-                background: rgba($color-black, 0.05);
-            }
-
-            &.dark {
-                color: rgba($color-white, 0.95);
-
-                &:hover {
-                    color: $color-primary-light;
-                    background: rgba($color-white, 0.05);
-                }
-            }
-        }
-    }
-
-    &__textarea {
-        font-family: inherit;
-        font-weight: inherit;
-        font-size: 2.3rem;
-        padding: 1rem 1.5rem;
-        padding-right: 2.4rem;
-        color: rgba($color-black, 0.8);
-        width: 100%;
-        border-radius: 10px;
-        border: none;
-        border-bottom: 3px solid transparent;
-
-        margin-bottom: 2rem;
-
-        resize: none;
-
-        transition: all 300ms;
-    }
-
-    &__types {
-        gap: 1rem;
-
-        &--tag {
-            padding: 0.75rem;
-            margin: 0.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 2.2rem;
-            font-weight: 600;
-
-            cursor: pointer;
-
-            background: $color-white;
-            color: rgba($color-black, 0.8);
-
-            transition: all 200ms;
-
-            &.active {
-                color: $color-white;
-                background: linear-gradient(to bottom right,
-                    $color-primary,
-                    $color-primary-light
-                );
-            }
-            &.deactivated {
-                color: rgba($color-black, 0.6);
-                background: rgba($color-white, 0.8);
-            }
-        }
-    }
+        box-shadow: 0px 0px 3px 5px $color-primary-dark-2;
+    }     
 }
 
 @keyframes pullUp {

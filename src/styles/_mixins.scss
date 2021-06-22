@@ -1,6 +1,36 @@
 @import "variables";
 @import "mq";
 
+@mixin fullPage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 7.5rem;
+    width: 100%;
+    height: calc(100% - 7.5rem);
+    background: linear-gradient(
+        $color-primary-light 50%,
+        $color-primary-dark-1
+    );
+
+    overflow: hidden;
+    overflow-y: scroll;
+
+    z-index: 1000;
+
+    transition: all 200ms;
+
+    animation: pullUp 400ms ease-out;
+
+    &.dark {
+        background: linear-gradient(
+            $color-black 60%,
+            $color-primary-dark-2,
+            $color-primary
+        );
+    }
+}
+
 @mixin fullPlateDisplay {
     width: 60%;
     height: 17rem;

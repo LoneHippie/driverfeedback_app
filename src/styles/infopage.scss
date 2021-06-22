@@ -1,35 +1,10 @@
 @import "variables";
+@import "mixins";
 @import "mq";
 
 .info-page {
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin-top: 7.5rem;
+    @include fullPage;
     padding: 2rem;
-    width: 100%;
-    height: calc(100% - 7.5rem);
-    background: linear-gradient(
-        $color-primary-light 50%,
-        $color-primary-dark-1
-    );
-
-    overflow: hidden;
-    overflow-y: scroll;
-
-    z-index: 1000;
-
-    transition: all 200ms;
-
-    animation: pullUp 150ms ease-out;
-
-    &.dark {
-        background: linear-gradient(
-            $color-black 60%,
-            $color-primary-dark-2,
-            $color-primary
-        );
-    }
 
     &__background {
         position: fixed;
@@ -56,6 +31,12 @@
             text-decoration: none;
             font-size: 2.5rem;
             color: $color-white;
+
+            &:focus,
+            &:hover {
+                outline: none;
+                box-shadow: 0px 0px 4px 6.5px $color-primary-light;
+            }
 
             &:first-child {
                 margin-right: 2.5rem;

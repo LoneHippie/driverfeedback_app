@@ -7,6 +7,9 @@ import InfoPage from './InfoPage';
 
 import './../styles/base.scss';
 
+import PeaksLargeDark from './../images/peaks-dark-large.svg';
+import PeaksLargeLight from './../images/peaks-light-large.svg';
+
 import Searchbar from './Searchbar';
 
 const App = () => {
@@ -84,6 +87,12 @@ const App = () => {
             />
 
             <h1 className={`title ${isDarkMode ? 'dark' : ''}`}>Driver Feedback</h1>
+
+            <img
+                className="home-page__background"
+                src={isDarkMode ? PeaksLargeDark : PeaksLargeLight}
+                alt="wavy peak vectors"
+            ></img>
 
             <Searchbar 
                 drivers={drivers}

@@ -22,11 +22,7 @@ const Searchbar = (props) => {
     };
 
     //returns array of plates that include the current search term
-    const filteredPlates = drivers?.filter(el => {
-        if (el.plateNumber.includes(search)) {
-            return el;
-        }
-    });
+    const filteredPlates = drivers?.filter(el => el.plateNumber.includes(search));
 
     //wrapper function to autofill searchbar when clicking on a suggestion
     function handleSingleSelect(e, result) {

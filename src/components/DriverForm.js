@@ -20,6 +20,7 @@ const DriverForm = (props) => {
         if (el.name.toLowerCase().includes(countrySearch.toLowerCase().trimEnd())) {
             return el;
         }
+        return false;
     });
 
     const countrySearchResults = () => {
@@ -51,6 +52,7 @@ const DriverForm = (props) => {
         if (el.name.toLowerCase().includes(stateSearch.toLowerCase().trimEnd())) {
             return el;
         }
+        return false;
     });
 
     const stateSearchResults = () => {

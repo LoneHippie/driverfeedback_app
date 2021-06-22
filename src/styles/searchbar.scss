@@ -40,7 +40,7 @@
         border-bottom: 2px solid $color-primary-light;
         border-right: none;
         outline: none;
-        background: rgba($color-black, 0.02);
+        background: rgba($color-white, 0.8);
         color: $color-black;
 
         z-index: 1000;
@@ -65,7 +65,7 @@
         border-top: 2px solid $color-primary-light;
         border-bottom: 2px solid $color-primary-light;
         border-left: none;
-        background: rgba($color-black, 0.02);
+        background: rgba($color-white, 0.8);
 
         transition: all 200ms;
 

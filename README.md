@@ -10,8 +10,8 @@ Upon searching for a license plate, users can browse results to get relevant inf
 
 ### Tech Stack
 
-Front end: React, Sass
-Back end: NodeJS, Express, MongoDB
+Front end: React, Sass.
+Back end: NodeJS, Express, MongoDB.
 
 ### Driver Feedback API
 
